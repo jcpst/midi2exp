@@ -131,7 +131,7 @@ make flash-serialupdi
 
 Connect your UPDI programmer to the ATtiny1614 UPDI pin:
 
-- UPDI pin on ATtiny1614 (pin 10 on SOIC-14)
+- UPDI pin on ATtiny1614 (pin 13 on SOIC-14, PA0)
 - GND
 - VCC (5V)
 

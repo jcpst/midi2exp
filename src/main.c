@@ -66,10 +66,10 @@ void dac_init(void) {
     // Enable DAC output on PA6
     PORTA.DIR |= PIN6_bm;
     
-    // Configure VREF for DAC (using VDD as reference)
-    VREF.CTRLA = VREF_DAC0REFSEL_0V55_gc;  // 0.55V internal reference
+    // Configure VREF for DAC (using VDD as reference for full 0-5V range)
+    VREF.CTRLA = VREF_DAC0REFSEL_VDD_gc;
     
-    // Enable DAC with VDD reference and output enabled
+    // Enable DAC with output enabled
     DAC0.CTRLA = DAC_ENABLE_bm | DAC_OUTEN_bm;
     
     // Set initial output to 0
