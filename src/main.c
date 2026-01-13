@@ -50,8 +50,9 @@ void uart_init(void) {
     // Configure for 8N1 (8 data bits, no parity, 1 stop bit)
     USART0.CTRLC = USART_CHSIZE_8BIT_gc | USART_PMODE_DISABLED_gc | USART_SBMODE_1BIT_gc;
     
-    // Enable RX (optocoupler inversion handled by RXMODE setting if needed)
-    // For H11L1M inverted output, may need USART_RXMODE_GENAUTO_gc
+    // Enable RX
+    // Note: H11L1M optocoupler inverts the signal (idle HIGH, data LOW)
+    // This matches standard UART idle-high state, so no RX inversion needed
     USART0.CTRLB = USART_RXEN_bm;
     
     // Enable RX complete interrupt
@@ -88,9 +89,9 @@ void dac_set(uint8_t value) {
  * Map MIDI CC value (0-127) to DAC output (0-255)
  */
 uint8_t midi_to_dac(uint8_t midi_value) {
-    // Simple linear mapping: multiply by 2
-    // For more precision: (midi_value * 255) / 127
-    return midi_value << 1;
+    // Precise linear mapping to utilize full DAC range
+    // MIDI 127 -> DAC 255, MIDI 0 -> DAC 0
+    return ((uint16_t)midi_value * 255) / 127;
 }
 
 /*
@@ -164,8 +165,8 @@ int main(void) {
     
     // Main loop (everything handled in interrupts)
     while (1) {
-        // Could add power saving mode here
-        // Sleep mode would reduce power consumption
+        // Intentionally empty - all processing done in ISR
+        // Power saving could be added here if needed
     }
     
     return 0;
