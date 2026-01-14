@@ -1,0 +1,35 @@
+.pio
+.idea
+# PlatformIO
+.pioenvs/
+.piolibdeps/
+.vscode/
+
+# Compiled object files
+*.elf
+*.bin
+*.hex
+*.exe
+*.o
+*.d
+*.a
+
+# CLion/JetBrains project files
+*.iml
+cmake-build-*/
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# Test/build output
+/build/
+/test/.pio/
+
+# PlatformIO lib dependencies
+lib_deps/
+
+# Other
+*.log
