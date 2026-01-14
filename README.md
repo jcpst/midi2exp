@@ -82,11 +82,23 @@ Pin 6 (output) ─┬──── 10kΩ pullup to VCC
 
 ### Prerequisites
 
+**Option 1: PlatformIO (Recommended)**
+- [PlatformIO Core](https://platformio.org/) or PlatformIO IDE
+- Automatically handles toolchain installation
+
+**Option 2: Manual Build with AVR-GCC**
 - AVR-GCC toolchain
 - avr-libc
-- UPDI programmer (or USB-serial adapter for SerialUPDI)
 
-### Compile
+### Compile with PlatformIO
+
+```bash
+pio run
+```
+
+This produces `.pio/build/ATtiny1614/firmware.hex` ready for flashing.
+
+### Compile with Make (Alternative)
 
 ```bash
 make
@@ -96,7 +108,13 @@ This produces `midi2exp.hex` ready for flashing.
 
 ### Optional: Enable CC/Channel Filtering
 
-To filter for a specific CC number and MIDI channel, uncomment the line in `Makefile`:
+**For PlatformIO:** Uncomment the line in `platformio.ini`:
+
+```ini
+build_flags = ${env:ATtiny1614.build_flags} -DFILTER_CC
+```
+
+**For Makefile:** Uncomment the line in `Makefile`:
 
 ```makefile
 CFLAGS += -DFILTER_CC
@@ -113,19 +131,33 @@ Then modify `src/main.c` to set your desired CC number and channel:
 
 The ATtiny1614 uses UPDI (Unified Program and Debug Interface), a single-wire interface.
 
-### Using pymcuprog
+### Using PlatformIO
+
+Configure your upload port in `platformio.ini` by uncommenting and adjusting:
+
+```ini
+upload_port = /dev/ttyUSB0
+```
+
+Then flash the firmware:
+
+```bash
+pio run --target upload
+```
+
+### Using pymcuprog (Makefile)
 
 ```bash
 make flash
 ```
 
-### Using SerialUPDI
+### Using SerialUPDI (Makefile)
 
 ```bash
 make flash-serialupdi
 ```
 
-**Note:** Adjust the serial port (`/dev/ttyUSB0`) in the Makefile to match your system.
+**Note:** Adjust the serial port (`/dev/ttyUSB0`) in the Makefile or `platformio.ini` to match your system.
 
 ### UPDI Connection
 

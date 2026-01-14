@@ -1,19 +1,41 @@
+# PlatformIO
+.pio
+.pioenvs/
+.piolibdeps/
+lib_deps/
+
 # Build artifacts
 *.o
 *.elf
 *.hex
 *.lss
 *.map
+*.bin
+*.exe
+*.d
+*.a
 
 # Editor files
 *.swp
 *.swo
 *~
-.DS_Store
+*.log
 
 # IDE folders
 .vscode/
 .idea/
+*.iml
+cmake-build-*/
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# Test/build output
+/build/
+/test/.pio/
 
 # CodeQL
 _codeql_detected_source_root
