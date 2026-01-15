@@ -59,7 +59,7 @@ Pin 6 (output) ─┬──── 10kΩ pullup to VCC
 | Capacitor    | 0.1µF ceramic       | 2   |
 | Regulator    | 7805 or LDO         | 1   |
 | Jack         | 3.5mm TRS (MIDI in) | 1   |
-| Jack         | 3.5mm TRS (expr out)| 1   |
+| Jack         | 3.5mm TRS (expr out) | 1   |
 | Jack         | DC barrel 2.1mm     | 1   |
 
 **Optional:**
